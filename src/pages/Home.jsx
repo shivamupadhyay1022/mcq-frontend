@@ -12,7 +12,6 @@ function Home() {
       <TopNav />
       <div className="mt-20 mx-4">
         <Cutoff />
-        <div>
           <p className="my-2 font-semibold text-white">
             Chapter-wise Previous Year Questions
           </p>
@@ -26,7 +25,7 @@ function Home() {
             <Ccwqexam name={"KCET"} />
             <Ccwqexam name={"KEAM"} />
           </div>
-        </div>
+          
       </div>
       <FloatNav />
     </div>

@@ -1,7 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Ccwqexam({name,img}) {
   return (
+          <NavLink to={"/questions"} >
             <div className="flex flex-col justify-center items-center" >
               <div className="h-16 w-16 border-[1px] flex items-center justify-center rounded-lg border-slate-400">
                 <div className="avatar">
@@ -12,6 +14,7 @@ function Ccwqexam({name,img}) {
               </div>
               <p className="text-center my-1" >{name || "JEE Mains"}</p>
             </div>
+            </NavLink>
   )
 }
 
