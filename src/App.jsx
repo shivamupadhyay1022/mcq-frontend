@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/signup" element={<Signup/>}/>
         <Route exact path="/questions" element={<Examquestions/>}/>
-        <Route exact path="/solvequestion/:type" element={<SolveQuestion/>}/>
+        <Route exact path="/solvequestion" element={<SolveQuestion/>}/>
       </Routes>
       </QuestionProvider>
     </div>

@@ -9,8 +9,7 @@ function QuestionCard(props) {
  const question  = useContext(QContext)
   return (
     <NavLink to={{
-      pathname:"/solvequestion/parameter-data",
-      state:{stateParam: item}}} onClick={() =>{
+      pathname:"/solvequestion"}} onClick={() =>{
         question.setquestitem(item)
       }} >
     <MathJaxProvider>

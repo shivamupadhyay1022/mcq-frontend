@@ -5,7 +5,7 @@ function Backnav() {
   const navigate = useNavigate()
   return (
     <div className="font-hind flex flex-col z-50 justify-center ">
-      <div className="bg-slate-700 flex items-center justify- px-4 absolute left-1 right-1 border-slate-400 top-1 h-12 rounded-b-3xl border-b-2 ">
+      <div className="bg-slate-700 flex items-center px-4 fixed left-1 right-1 border-slate-400 top-0 h-12 rounded-b-3xl border-b-2 ">
         <div className="items-center w-full justify-between flex ">
           <div className="flex items-center flex-row space-x-2">
             <svg

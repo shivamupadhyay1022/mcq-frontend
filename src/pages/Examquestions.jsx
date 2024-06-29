@@ -1,26 +1,26 @@
-import React from "react";
+import React,{useContext} from "react";
 import { useEffect } from "react";
 import { supabase } from "../supabase";
 import { useState } from "react";
 import QuestionCard from "../components/QuestionCard";
 import './Question.css'
-
+import { QContext } from "../context/Context";
 
 function Questions() {
-  const [quest, setQuest] = useState([]); 
+  const [quest, setQuest] = useState([]);
+  const cont = useContext(QContext)
   //   function setAlert() {
   //     alert = !alert;
   //   }
 
   useEffect(() => {
     getQuestions();
+    console.log(cont)
   }, []);
 
   async function getQuestions() {
     try {
-      const { data, error } = await supabase.from("questions").select("*").limit(10)
-      if (error) throw error;
-      if (data != null) {setQuest(data);}
+      if (cont != null) {setQuest(cont.QList);}
     } catch (error) {}
   }
 

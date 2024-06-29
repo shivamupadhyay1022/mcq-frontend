@@ -22,7 +22,7 @@ function Home() {
             <Ccwqexam name={"WEBJEE"} />
             <Ccwqexam name={"SRMJEE"} />
             <Ccwqexam name={"MHT CET"} />
-            <Ccwqexam name={"KCET"} />
+            <Ccwqexam name={"NEET"} />
             <Ccwqexam name={"KEAM"} />
           </div>
           
