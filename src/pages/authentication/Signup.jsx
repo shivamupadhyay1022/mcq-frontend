@@ -1,10 +1,89 @@
 import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from "../../firebase";
+import { ref, set } from "firebase/database";
 
 function Signup() {
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [mob, setMob] = useState("");
+  const navigate = useNavigate();
+
+  const checkinput = () => {
+    if (
+      email.trim().length == 0 ||
+      password.trim().length == 0 ||
+      name.trim().length == 0 ||
+      mob.trim().length == 0
+    ) {
+      console.log( email, password, name,mob);
+      toast.error("Fill All Fields", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      onRegister();
+      
+    }
+  };
+
+  const onRegister = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        //registered
+        const user = userCredential.user;
+        set(ref(db, "users/" + userCredential.user.uid), {
+          email: email,
+          name: name,
+          mob: mob,
+        });
+        toast.success(user.email + " Registered", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorMessage);
+        toast.error(errorCode, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    checkinput();
+  };
 
   return (
     <div className="font-hind  ">
+      <ToastContainer/>
       <div className="ml-8 mt-8">
         <span className="text-4xl">Logo</span>
         <br />
@@ -26,7 +105,7 @@ function Signup() {
           </svg>
         </span>
       </div>
-      <div className="bg-slate-800 border-r-8 mt-8 rounded-r-[50px] border-gray-800 h-[80vh] overflow-y-hidden">
+      <div className="bg-slate-800 border-r-8 mt-8 mb-8 rounded-r-[50px] border-gray-800  overflow-y-hidden">
         <div className="mx-8 flex flex-col">
           <p className="mt-8 mb-8 text-2xl font-semibold">Sign Up</p>
           <label className="input mb-8 input-bordered flex h-14 bg-inherit border-slate-500 items-center gap-2">
@@ -35,6 +114,7 @@ function Signup() {
               type="text"
               className="grow"
               placeholder="example@site.com"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label className="input input-bordered bg-inherit h-14 border-slate-500 mb-8 flex items-center gap-2">
@@ -43,6 +123,7 @@ function Signup() {
               type={show ? "text" : "password"}
               className="grow"
               placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={() => setShow((prev) => !prev)}>
               {show ? (
@@ -88,7 +169,8 @@ function Signup() {
             <input
               type="text"
               className="grow"
-              placeholder="example@site.com"
+              placeholder="name"
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
           <label className="input mb-8 input-bordered flex bg-inherit h-14 border-slate-500 items-center gap-2">
@@ -96,19 +178,20 @@ function Signup() {
             <input
               type="text"
               className="grow"
-              placeholder="example@site.com"
+              placeholder="+91-xxxxxxxxxx"
+              onChange={(e) => setMob(e.target.value)}
             />
           </label>
         </div>
         <div className="flex flex-col items-center">
-          <button className="btn btn-active w-32 bg-slate-900 rounded-3xl border-slate-500 font-semibold btn-neutral">
+          <button onClick={(e)=>handleSubmit(e)} className="btn btn-active w-32 bg-slate-900 rounded-3xl border-slate-500 font-semibold btn-neutral">
             Submit
           </button>
           <span className="mt-4" >
-            Already registered ? SignIn
+            Already registered ? <span onClick={()=> navigate("/signin")} className='underline'>SignIn</span>
           </span>
           <hr class="h-px w-3/4 my-8 border-2 bg-gray-700" />
-          <button class="flex items-center bg-gray-900 border border-slate-500 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+          <button class="flex items-center bg-gray-900 border border-slate-500 rounded-lg shadow-md px-6 py-2 mb-4 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
           <svg
             class="h-6 w-6 mr-2"
             xmlns="http://www.w3.org/2000/svg"

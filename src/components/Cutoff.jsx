@@ -1,4 +1,5 @@
 import React from 'react'
+import { bit, iit, nta, vit, wb } from '../assets'
 
 function Cutoff() {
   return (
@@ -7,7 +8,7 @@ function Cutoff() {
       <div className="h-18 w-[120px] bg-blue-200 rounded-xl flex-shrink-0 flex-col flex items-start pl-4 justify-center ">
         <div className="avatar mt-2">
           <div className="w-8 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={nta} />
           </div>
         </div>
         <span className="text-blue-500 mb-2 mt-1 font-semibold">
@@ -18,7 +19,7 @@ function Cutoff() {
       <div className="h-18 w-[120px] bg-violet-200 rounded-xl flex-shrink-0 flex-col flex items-start pl-4 justify-center ">
         <div className="avatar mt-2">
           <div className="w-8 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={iit} />
           </div>
         </div>
         <span className="text-violet-500 mb-2 mt-1 font-semibold">
@@ -29,7 +30,7 @@ function Cutoff() {
       <div className="h-18 w-[120px] bg-blue-200 rounded-xl flex-shrink-0 flex-col flex items-start pl-4 justify-center ">
         <div className="avatar mt-2">
           <div className="w-8 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={bit} />
           </div>
         </div>
         <span className="text-blue-500 mb-2 mt-1 font-semibold">
@@ -40,7 +41,7 @@ function Cutoff() {
       <div className="h-18 w-[120px] bg-violet-200 rounded-xl flex-shrink-0 flex-col flex items-start pl-4 justify-center ">
         <div className="avatar mt-2">
           <div className="w-8 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={vit} />
           </div>
         </div>
         <span className="text-violet-500 mb-2 mt-1 font-semibold">
@@ -51,7 +52,7 @@ function Cutoff() {
       <div className="h-18 w-[120px] bg-blue-200 rounded-xl flex-shrink-0 flex-col flex items-start pl-4 justify-center ">
         <div className="avatar mt-2">
           <div className="w-8 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={wb} />
           </div>
         </div>
         <span className="text-blue-500 mb-2 mt-1 font-semibold">

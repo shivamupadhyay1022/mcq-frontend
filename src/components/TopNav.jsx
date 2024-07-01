@@ -1,41 +1,33 @@
-import React from 'react'
+import React,{useContext,useState,useEffect} from 'react'
+import { AuthContext } from "../components/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../firebase";
+
 
 function TopNav() {
+  const { currentUser } = useContext(AuthContext);
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchdata();
+  },[currentUser]);
+
+  const fetchdata = async () => {
+    const starCountRef = ref(db, "users/" + currentUser.uid);
+    await onValue(starCountRef, (snapshot) => {
+      if (snapshot.exists()) {
+        var data = snapshot.val();
+        setName(data.name);
+      }
+    });
+};
+
   return (
-    <div className="absolute left-1 right-1 h-16 top-1 bg-slate-700 border-b-4 border-slate-500">
+    <div className="absolute z-50 left-1 right-1 h-16 top-1 bg-slate-700 border-b-4 border-slate-500">
         <div className="flex flex-row items-center justify-between">
-          <div className="flex items-center justify-center h-16 mx-4">
-            Name
-            <div className="dropdown">
-              <div tabIndex={0} role="button" className=" m-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a>Engineering</a>
-                </li>
-                <li>
-                  <a>Medical</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <button onClick={()=> navigate("/profile")} className="flex items-center justify-center h-16 mx-4">
+             {name || "Name"}
+          </button>
           <div className="flex items-center justify-center h-16 mx-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"

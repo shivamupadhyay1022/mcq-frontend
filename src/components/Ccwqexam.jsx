@@ -3,7 +3,7 @@ import { NavLink,useNavigate } from 'react-router-dom'
 import { QContext } from '../context/Context'
 import { supabase } from "../supabase";
 
-function Ccwqexam({name,img}) {
+function Ccwqexam({name,img,sub}) {
   const [quest, setQuest] = useState([]); 
   const question  = useContext(QContext)
   const navigate = useNavigate()
@@ -16,11 +16,19 @@ function Ccwqexam({name,img}) {
   // }, []);
 
   async function getQuestions() {
+    if(!sub){
     try {
       const { data, error } = await supabase.from("questions").select("*").like('tags', '%'+name+'%').limit(10)
       if (error) throw error;
       if (data != null) {question.setQList(data)}
-    } catch (error) {}
+    } catch (error) {console.log(error)}
+  }else if(sub){
+    try {
+      const { data, error } = await supabase.from("questions").select("*").like('subject', '%'+name+'%').limit(10)
+      if (error) throw error;
+      if (data != null) {question.setQList(data)}
+    } catch (error) {console.log(error)}
+  }
   }
   
   return (

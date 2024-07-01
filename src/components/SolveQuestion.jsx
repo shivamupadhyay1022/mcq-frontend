@@ -5,41 +5,56 @@ import { useLocation, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { QContext } from "../context/Context";
 import { MathJaxProvider, MathJaxHtml } from "mathjax3-react";
+import { MathJax } from "better-react-mathjax";
 
 function SolveQuestion(props) {
   const cont = useContext(QContext);
   const [option, setOption] = useState();
   const [correct, setCorrect] = useState();
   const [showSol, setShowsol] = useState(false);
-  const [correctoption, setCorrectoption] = useState()
+  const [correctoption, setCorrectoption] = useState();
+  const [question, setQuestion] = useState();
+  const [tag, setTag] = useState();
+  const [op1, setOp1] = useState();
+  const [op2, setOp2] = useState();
+  const [op3, setOp3] = useState();
+  const [op4, setOp4] = useState();
+  const [correctopt, setCorrectopt] = useState();
+  const [subject, setSubject] = useState();
+  const [explanation, setExplanation] = useState();
   const item = cont.QuestItem;
   // const {stateParam} = useLocation().state.stateParam
   useEffect(() => {
-    console.log(item);
+    setQuestion(item.question);
+    setOp1(item.option1);
+    setOp2(item.option2);
+    setOp3(item.option3);
+    setOp4(item.option4);
+    setExplanation(item.explanation);
     // console.log(stateParam)
   });
 
   function checkanswer() {
-    setShowsol(true)
+    setShowsol(true);
     if (item.correct == option) setCorrect(true);
     else setCorrect(false);
 
-    switch(item.correct) {
+    switch (item.correct) {
       case "op1":
-        setCorrectoption("Option 1")
+        setCorrectoption("Option 1");
         break;
       case "op2":
-        setCorrectoption("Option 2")
+        setCorrectoption("Option 2");
         break;
       case "op3":
-        setCorrectoption("Option 3")
+        setCorrectoption("Option 3");
         break;
       case "op4":
-        setCorrectoption("Option 4")
+        setCorrectoption("Option 4");
         break;
-      
+
       default:
-        // code block
+      // code block
     }
   }
   return (
@@ -48,12 +63,24 @@ function SolveQuestion(props) {
         <Backnav />
         <div className=" pt-20 pb-20 space-y-4 mx-4">
           <p className="p-2 ">
-            {<MathJaxHtml html={item.question} /> || "question"}
+          <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>${question}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
           </p>
           <div className="form-control border-2 rounded-2xl border-slate-600  ">
             <label className="label cursor-pointer p-4 ">
               <span className="label-text">
-                {<MathJaxHtml html={item.option1} /> || "Option 1"}
+              <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>Option 1: ${op1}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
               </span>
               <input
                 type="radio"
@@ -66,7 +93,13 @@ function SolveQuestion(props) {
           <div className="form-control border-2 rounded-2xl border-slate-600">
             <label className="label cursor-pointer p-4">
               <span className="label-text">
-                {<MathJaxHtml html={item.option2} /> || "Option 2"}
+              <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>Option 2: ${op2}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
               </span>
               <input
                 type="radio"
@@ -79,7 +112,13 @@ function SolveQuestion(props) {
           <div className="form-control border-2 rounded-2xl border-slate-600">
             <label className="label cursor-pointer p-4">
               <span className="label-text">
-                {<MathJaxHtml html={item.option3} /> || "Option 3"}
+              <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>Option 3: ${op3}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
               </span>
               <input
                 type="radio"
@@ -92,7 +131,13 @@ function SolveQuestion(props) {
           <div className="form-control border-2 rounded-2xl border-slate-600">
             <label className="label cursor-pointer p-4">
               <span className="label-text">
-                {<MathJaxHtml html={item.option4} /> || "Option 4"}
+              <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>Option 4: ${op4}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
               </span>
               <input
                 type="radio"
@@ -102,12 +147,32 @@ function SolveQuestion(props) {
               />
             </label>
           </div>
-          {showSol && <div>{correct ? <div className="bg-green-500 h-8 rounded-xl text-center flex justify-center text-white" ><p>You are correct</p></div> : <div className="bg-red-500 h-8 rounded-xl text-center flex justify-center text-white"> You are incorrect</div>}</div>}
+          {showSol && (
+            <div>
+              {correct ? (
+                <div className="bg-green-500 h-8 rounded-xl text-center flex justify-center text-white">
+                  <p>You are correct</p>
+                </div>
+              ) : (
+                <div className="bg-red-500 h-8 rounded-xl text-center flex justify-center text-white">
+                  {" "}
+                  You are incorrect
+                </div>
+              )}
+            </div>
+          )}
           {showSol && (
             <div className="flex flex-col items-center border-2 border-slate-600 rounded-2xl ">
               <p>Correct option is: {correctoption || "null"}</p>
-              <p>Explanation:</p>
-              <p className="px-2">{item.explanation || "explpanation"}</p>
+              <p className="px-2">
+                <MathJax inline dynamic>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: `<p>Explanation:${explanation}</p> `.replace(/\n[\s]*/g, ""),
+                    }}
+                  />
+                </MathJax>
+              </p>
             </div>
           )}
         </div>
