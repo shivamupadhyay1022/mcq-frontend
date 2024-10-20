@@ -1,0 +1,8 @@
+{
+  "appId": "prepify.sci.com",
+  "appName": "Prepify",
+  "webDir": "dist",
+  "server" :{
+    "url":"https://sci-mcq-frontned.web.app"
+  }
+}

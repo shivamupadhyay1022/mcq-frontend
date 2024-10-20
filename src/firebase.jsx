@@ -8,6 +8,7 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBoYDMY13nt7Erj5Dtv0_Gpzc39ck2Wz1w",
+  databaseURL: "https://sci-mcq-frontned-default-rtdb.asia-southeast1.firebasedatabase.app",
   authDomain: "sci-mcq-frontned.firebaseapp.com",
   projectId: "sci-mcq-frontned",
   storageBucket: "sci-mcq-frontned.appspot.com",

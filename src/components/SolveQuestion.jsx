@@ -59,8 +59,8 @@ function SolveQuestion(props) {
   }
   return (
     <MathJaxProvider>
-      <div className="flex flex-col ">
-        <Backnav />
+      <div className="flex flex-col text-white ">
+        <Backnav timer={true} />
         <div className=" pt-20 pb-20 space-y-4 mx-4">
           <p className="p-2 ">
           <MathJax inline dynamic>
@@ -185,13 +185,13 @@ function SolveQuestion(props) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="size-4"
+                className="size-4"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
                 />
               </svg>
@@ -203,13 +203,13 @@ function SolveQuestion(props) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="size-4"
+                className="size-4"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
                 />
               </svg>

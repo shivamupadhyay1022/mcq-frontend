@@ -9,7 +9,7 @@ function Home() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="font-hind flex flex-col justify-center ">
+    <div className="font-hind flex flex-col mb-20 justify-center ">
       <TopNav />
       <div className="mt-20 mx-4">
         <Cutoff />

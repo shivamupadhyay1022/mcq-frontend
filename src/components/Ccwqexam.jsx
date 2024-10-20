@@ -20,13 +20,13 @@ function Ccwqexam({name,img,sub}) {
     try {
       const { data, error } = await supabase.from("questions").select("*").like('tags', '%'+name+'%').limit(10)
       if (error) throw error;
-      if (data != null) {question.setQList(data)}
+      if (data != null) {question.setQList(data); question.setActSub(name);}
     } catch (error) {console.log(error)}
   }else if(sub){
     try {
       const { data, error } = await supabase.from("questions").select("*").like('subject', '%'+name+'%').limit(10)
       if (error) throw error;
-      if (data != null) {question.setQList(data)}
+      if (data != null) {question.setQList(data); question.setActSub(name);}
     } catch (error) {console.log(error)}
   }
   }

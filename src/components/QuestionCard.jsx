@@ -13,7 +13,7 @@ function QuestionCard(props) {
         question.setquestitem(item)
       }} >
     <MathJaxProvider>
-    <div className="card w-full bg-base-100 my-2 shadow-xl">
+    <div className="card text-white w-full bg-base-100 my-2 shadow-xl">
       <div className="card-body">
         <div className="card-actions justify-end">
           <div className="badge badge-neutral">{item.type || "Subject"}</div>
