@@ -24,7 +24,7 @@ function FloatNav() {
             </svg>
             <span className="text-[12px]">Home</span>
           </button>
-          <button onClick={()=>{navigate("/tests")}} className="flex flex-col items-center">
+          <button onClick={()=>{navigate("/exams")}} className="flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Backnav from "./Backnav";
-import Checknav from "./Checknav";
+import Backnav from "../components/Backnav";
 import { useLocation, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { QContext } from "../context/Context";
@@ -58,7 +57,7 @@ function SolveQuestion(props) {
     }
   }
   return (
-    <MathJaxProvider>
+    <div>
       <div className="flex flex-col text-white ">
         <Backnav timer={true} />
         <div className=" pt-20 pb-20 space-y-4 mx-4">
@@ -223,7 +222,7 @@ function SolveQuestion(props) {
           </div>
         </footer>
       </div>
-    </MathJaxProvider>
+    </div>
   );
 }
 
