@@ -30,7 +30,7 @@ function Working() {
               </div>
               <div className="spoke"></div>
             </div>
-            <p className='my-2 text-2xl' >We are activeluy working on it</p>
+            <p className='my-2 text-2xl' >We are actively working on the feature</p>
             <p className=' text-2xl' >Stay Tuned!</p>
         </div>
         <Backnav/>

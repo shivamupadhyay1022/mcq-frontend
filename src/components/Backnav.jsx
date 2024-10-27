@@ -25,7 +25,7 @@ function Backnav({title,timer}) {
             </svg>
             <p>{title || "Path"}</p>
           </div>
-          {timer && <div>start timer</div>}
+          {timer && <div>{timer}</div>}
         </div>
       </div>
     </div>
